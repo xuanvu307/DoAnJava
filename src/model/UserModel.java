@@ -15,6 +15,8 @@ public class UserModel {
     public void registerUser(ArrayList<User> users,Scanner sc){
         System.out.println("enter name: ");
         String name = sc.nextLine();
+        System.out.println("enter phoneNUmber: ");
+        String phone = regex.checkPhoneNumber(sc);
         System.out.println("enter username:");
         String username = regex.checkUserName(sc);
         System.out.println("enter password");
@@ -22,7 +24,7 @@ public class UserModel {
 
         if (!checkUserName(username,users)){
             System.out.println("register OK");
-            User user = new User(name,username,password);
+            User user = new User(name,username,password,phone);
             users.add(user);
         }
     }
@@ -32,14 +34,14 @@ public class UserModel {
         String username = sc.nextLine();
         System.out.println("password: ");
         String password = sc.nextLine();
-        int flag = 0;
+        int check = 0;
         for (User user: users) {
             if (user.getUsername().equalsIgnoreCase(username) && user.getPassword().equals(password)){
                 System.out.println("Login successfully!");
-                flag = 1;
                 View view = new View();
+                check = 1;
                 if (user.getRole().equals("admin")){
-                    view.adminView();
+                    view.adminView(sc);
                 } else if (user.getRole().equals("worker")){
                     view.workerView();
                 } else {
@@ -47,10 +49,33 @@ public class UserModel {
                 }
             }
         }
-        if (flag == 0){
+        if (check == 0){
             System.out.println("login fail");
+            View view = new View();
+            view.loginFail(users,sc);
         }
     }
+
+    // đặt lại mật khẩu bằng sdt
+    // mật khẩu đặt lại theo đúng định dạng regex
+    public void forgetPassword(ArrayList<User> users,Scanner sc){
+        int check = 0;
+        System.out.println("input phoneNUmber ");
+        String phone = sc.nextLine();
+        for (User user:users) {
+            if (user.getPhoneNumber().equals(phone)){
+                System.out.println("Please input new pass:");
+                String newPassword = regex.checkPassword(sc);
+                user.setPassword(newPassword);
+                System.out.println(" set new password success : " + user.getPassword());
+                check =1;
+            }
+        }
+        if (check ==0){
+            System.out.println("phone number wrong");
+        }
+    }
+
 
     // duyệt hết các phần tử trong mảng xem đã username được sử dụng chưa
     public boolean checkUserName(String username, ArrayList<User> users){

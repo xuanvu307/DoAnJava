@@ -1,7 +1,7 @@
 package control;
 
 import model.User;
-import model.UserModel;
+import view.View;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,18 +9,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        UserModel userModel = new UserModel();
+        View view = new View();
         ArrayList<User> users = new ArrayList<>();
-        User admin = new User("admin","admin","admin","123");
-        User mem = new User("member","admin","mem","123");
-        User work = new User("worker","admin","work","123");
+        User admin = new User("admin","admin","admin","123","123");
+        User mem = new User("member","admin","mem","123","555");
+        User work = new User("worker","admin","worker","123", "23");
         users.add(admin);
         users.add(mem);
         users.add(work);
-
-//        userModel.registerUser(users,sc);
-//        userModel.registerUser(users,sc);
+        view.homeView(users,sc);
         System.out.println(users);
-        userModel.login(users,sc);
+
     }
 }

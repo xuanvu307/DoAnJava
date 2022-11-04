@@ -7,25 +7,27 @@ public class User {
     private String name;
     private String username;
     private String password;
-
+    private String phoneNumber;
 
     public User() {
         this.idUser = "ID"+id++;
     }
 
-    public User(String role, String name, String username, String password) {
+    public User(String name, String username, String password, String phoneNumber) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
         this.idUser = "ID"+id++;
+    }
+
+    public User(String role, String name, String username, String password, String phoneNumber) {
         this.role = role;
         this.name = name;
         this.username = username;
         this.password = password;
-    }
-
-    public User(String name, String username, String password) {
+        this.phoneNumber = phoneNumber;
         this.idUser = "ID"+id++;
-        this.name = name;
-        this.username = username;
-        this.password = password;
     }
 
     public String getIdUser() {
@@ -56,6 +58,14 @@ public class User {
         this.username = username;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -64,16 +74,19 @@ public class User {
         this.password = password;
     }
 
-    @Override
+
 
     //chỉ xem id, userName, name
+
+    @Override
     public String toString() {
         return "User{" +
                 "idUser='" + idUser + '\'' +
                 ", role='" + role + '\'' +
                 ", name='" + name + '\'' +
-                ", userName='" + username + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 "\n";
     }
 }
