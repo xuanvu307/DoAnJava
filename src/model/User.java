@@ -5,7 +5,7 @@ public class User {
     private String idUser;
     private String role = "member";
     private String name;
-    private String userName;
+    private String username;
     private String password;
 
 
@@ -13,11 +13,18 @@ public class User {
         this.idUser = "ID"+id++;
     }
 
-    public User(String role, String name, String userName, String password) {
+    public User(String role, String name, String username, String password) {
         this.idUser = "ID"+id++;
         this.role = role;
         this.name = name;
-        this.userName = userName;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String name, String username, String password) {
+        this.idUser = "ID"+id++;
+        this.name = name;
+        this.username = username;
         this.password = password;
     }
 
@@ -41,12 +48,12 @@ public class User {
         this.name = name;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -65,8 +72,8 @@ public class User {
                 "idUser='" + idUser + '\'' +
                 ", role='" + role + '\'' +
                 ", name='" + name + '\'' +
-                ", userName='" + userName + '\'' +
+                ", userName='" + username + '\'' +
                 ", password='" + password + '\'' +
-                '}';
+                "\n";
     }
 }
