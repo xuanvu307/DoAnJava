@@ -1,43 +1,18 @@
 package model;
 
-import java.time.LocalDateTime;
-import java.util.*;
 
 public class Member extends User {
-    private List<String> feedbacks = new ArrayList();
-    private String[] images = new String[3];
-    private LocalDateTime time;
+    private String ranking = "Bronze";
 
-    public Member(LocalDateTime time) {
-        this.time = time;
-    }
-    public Member(String role, String name, String username, String password, String phoneNumber, LocalDateTime time) {
-        super(role, name, username, password, phoneNumber);
-        this.time = time;
-    }
-    public List<String> getFeedbacks() {
-        return feedbacks;
-    }
-    public void setFeedbacks(List<String> feedbacks) {
-        this.feedbacks = feedbacks;
-    }
-    public String[] getImages() {
-        return images;
-    }
-    public void setImages(String[] images) {
-        this.images = images;
-    }
-    public LocalDateTime getTime() {
-        return time;
-    }
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public Member(User user) {
+        super(user.getName(), user.getUsername(), user.getPassword(), user.getPhoneNumber());
     }
 
-    @Override
-    public String toString() {
-        return "Member [feedbacks=" + feedbacks + ", images=" + Arrays.toString(images) + ", time=" + time + "]";
+    public String getRanking() {
+        return ranking;
     }
-    
-    
+
+    public void setRanking(String ranking) {
+        this.ranking = ranking;
+    }
 }
