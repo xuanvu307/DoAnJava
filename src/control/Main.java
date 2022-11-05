@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+<<<<<<< Updated upstream
         Scanner sc = new Scanner(System.in);
         View view = new View();
         ArrayList<User> users = new ArrayList<>();
@@ -20,5 +21,10 @@ public class Main {
         view.homeView(users,sc);
         System.out.println(users);
 
+=======
+        long l = System.currentTimeMillis();
+        System.out.println(l);
+        System.out.println(l);
+>>>>>>> Stashed changes
     }
 }
