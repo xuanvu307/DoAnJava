@@ -46,7 +46,7 @@ public class UserModel {
                     view.workerView();
                     return user.getUsername();
                 } else {
-                    view.memberView(user.getUsername(),sc,feedbacks);
+                    view.memberView(user.getUsername(),sc,feedbacks,users);
                     return user.getUsername();
                 }
             }
@@ -74,6 +74,18 @@ public class UserModel {
         }
         if (check ==0){
             System.out.println("phone number wrong");
+        }
+    }
+
+    // đổi password
+    public void changePassword(ArrayList<User> users,Scanner sc, String username){
+        for (User user: users) {
+            if (user.getUsername().equals(username)){
+                System.out.println("new password");
+                String newPassword = regex.checkPassword(sc);
+                user.setPassword(newPassword);
+                System.out.println("set new password success");
+            }
         }
     }
 

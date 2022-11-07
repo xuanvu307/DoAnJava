@@ -11,16 +11,14 @@ public class View {
         System.out.println("---------- MENU ----------");
         System.out.println("1. Login");
         System.out.println("2. Register");
+        System.out.println("0. Exit");
         System.out.println("Choose number, please: ");
         try{
             int choose = Integer.parseInt(sc.nextLine());
-            switch (choose){
-                case 1:
-                    userModel.login(feedbacks,users,sc);
-                    break;
-                case 2:
-                    userModel.registerUser(users,sc);
-                    break;
+            switch (choose) {
+                case 1 -> userModel.login(feedbacks, users, sc);
+                case 2 -> userModel.registerUser(users, sc);
+                default -> System.out.println("Exit");
             }
         } catch (Exception e){
             System.out.println("enter number");
@@ -34,13 +32,9 @@ public class View {
         System.out.println("Choose number, please: ");
         try{
             int choose = Integer.parseInt(sc.nextLine());
-            switch (choose){
-                case 1:
-                    userModel.login(feedbacks,users, sc);
-                    break;
-                case 2:
-                    userModel.forgetPassword(users,sc);
-                    break;
+            switch (choose) {
+                case 1 -> userModel.login(feedbacks, users, sc);
+                case 2 -> userModel.forgetPassword(users, sc);
             }
         } catch (Exception e){
             System.out.println("enter number");
@@ -50,14 +44,45 @@ public class View {
 
     public void adminView(Scanner sc){
         System.out.println("---------- ADMIN ----------");
-        System.out.println("1. cho");
-        System.out.println("2. Forgot password");
-        System.out.println("Choose number, please: ");
-        System.out.println("1");
-        System.out.println("1");
-        System.out.println("1");
-        System.out.println("1");
+        System.out.println("1. Accept schedule");
+        System.out.println("2. View list schedule");
+        System.out.println("3. View list feedback");
+        System.out.println("4. Update Member");
+        System.out.println("5. ");
+        System.out.println("6. ");
+        System.out.println("7. ");
         try{
+            AdminModel adminModel = new AdminModel();
+            int choose = Integer.parseInt(sc.nextLine());
+            switch (choose){
+                case 1:
+
+                    break;
+                case 2:
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+            }
+        } catch (Exception e){
+            System.out.println("enter number");
+        }
+
+    }
+    public void memberView(String username, Scanner sc, ArrayList<Feedback> feedbacks, ArrayList<User> users){
+        do {
+            System.out.println("HELLO "+username+" ----------");
+            System.out.println("1. Set schedule");
+            System.out.println("2. Update schedule");
+            System.out.println("3. Remote schedule ");
+            System.out.println("4. View schedule");
+            System.out.println("5. Feedback");
+            System.out.println("6. Change Password");
+            System.out.println("0. Log out");
             int choose = Integer.parseInt(sc.nextLine());
             switch (choose){
                 case 1:
@@ -68,45 +93,19 @@ public class View {
                 case 3:
                     break;
                 case 4:
-                    break;
-                case 5:
-                    break;
-            }
-        } catch (Exception e){
-            System.out.println("enter number");
-        }
 
-    }
-    public void memberView(String name, Scanner sc, ArrayList<Feedback> feedbacks){
-        System.out.println("HELLO "+name+" ----------");
-        System.out.println("1. Login");
-        System.out.println("2. Forgot password");
-        System.out.println("Choose number, please: ");
-        System.out.println("2");
-        System.out.println("2");
-        System.out.println("2");
-        System.out.println("2");
-        MemberModel memberModel = new MemberModel();
-        int choose = Integer.parseInt(sc.nextLine());
-        try{
-            switch (choose){
-                case 1:
-
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
                     break;
                 case 5:
                     FeedBackModel feedBackModel = new FeedBackModel();
-                    feedBackModel.feedBack(feedbacks,sc, name);
+                    feedBackModel.newFeedBack(feedbacks,sc, username);
                     break;
+                case 6:
+                    userModel.changePassword(users,sc,username);
+                    break;
+                case 0:
+                    homeView(feedbacks,users,sc);
             }
-        } catch (Exception e){
-            System.out.println("enter number");
-        }
+        } while (true);
     }
     public void workerView(){
         System.out.println("---------- MENU ----------");
