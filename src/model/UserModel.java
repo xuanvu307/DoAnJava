@@ -4,7 +4,6 @@ import utils.Regex;
 import view.View;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class UserModel {
@@ -30,31 +29,30 @@ public class UserModel {
         }
     }
 
-    public String login(ArrayList<Feedback> feedbacks,ArrayList<User> users,Scanner sc){
+    public void login(ArrayList<Feedback> feedbacks, ArrayList<User> users, ArrayList<Schedule> schedules, Scanner sc){
         System.out.println("Username: ");
         String username = sc.nextLine();
         System.out.println("password: ");
         String password = sc.nextLine();
+        int check =0;
         for (User user: users)
             if (user.getUsername().equalsIgnoreCase(username) && user.getPassword().equals(password)){
                 System.out.println("Login successfully!");
+                check =1;
                 View view = new View();
                 if (user.getRole().equals("admin")){
                     view.adminView(sc);
-                    return user.getUsername();
                 } else if (user.getRole().equals("worker")){
                     view.workerView();
-                    return user.getUsername();
                 } else {
-                    view.memberView(user.getUsername(),sc,feedbacks,users);
-                    return user.getUsername();
+                    view.memberView(user.getUsername(),sc,feedbacks,users, schedules);
                 }
             }
-
-        System.out.println("login fail");
+        if (check == 0){
+            System.out.println("login fail");
             View view = new View();
-            view.loginFail(feedbacks,users,sc);
-        return "";
+            view.loginFail(feedbacks,users, schedules,sc);
+        }
     }
 
     // đặt lại mật khẩu bằng sdt

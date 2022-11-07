@@ -7,7 +7,9 @@ import java.util.Scanner;
 
 public class View {
     UserModel userModel = new UserModel();
-    public  void homeView(ArrayList<Feedback> feedbacks, ArrayList<User> users, Scanner sc){
+    ScheduleModel scheduleModel = new ScheduleModel();
+
+    public  void homeView(ArrayList<Feedback> feedbacks, ArrayList<User> users, ArrayList<Schedule> schedules, Scanner sc){
         System.out.println("---------- MENU ----------");
         System.out.println("1. Login");
         System.out.println("2. Register");
@@ -16,16 +18,22 @@ public class View {
         try{
             int choose = Integer.parseInt(sc.nextLine());
             switch (choose) {
-                case 1 -> userModel.login(feedbacks, users, sc);
-                case 2 -> userModel.registerUser(users, sc);
-                default -> System.out.println("Exit");
+                case 1:
+                    userModel.login(feedbacks, users, schedules, sc);
+                    break;
+                case 2:
+                    userModel.registerUser(users, sc);
+                    break;
+                case 0:
+                    System.out.println("Exit");
+                    break;
             }
         } catch (Exception e){
             System.out.println("enter number");
         }
     }
 
-    public void loginFail(ArrayList<Feedback> feedbacks,ArrayList<User> users, Scanner sc){
+    public void loginFail(ArrayList<Feedback> feedbacks,ArrayList<User> users, ArrayList<Schedule> schedules, Scanner sc){
         System.out.println("---------- MENU ----------");
         System.out.println("1. Login");
         System.out.println("2. Forgot password");
@@ -33,7 +41,7 @@ public class View {
         try{
             int choose = Integer.parseInt(sc.nextLine());
             switch (choose) {
-                case 1 -> userModel.login(feedbacks, users, sc);
+                case 1 -> userModel.login(feedbacks, users, schedules,sc);
                 case 2 -> userModel.forgetPassword(users, sc);
             }
         } catch (Exception e){
@@ -52,7 +60,6 @@ public class View {
         System.out.println("6. ");
         System.out.println("7. ");
         try{
-            AdminModel adminModel = new AdminModel();
             int choose = Integer.parseInt(sc.nextLine());
             switch (choose){
                 case 1:
@@ -73,7 +80,8 @@ public class View {
         }
 
     }
-    public void memberView(String username, Scanner sc, ArrayList<Feedback> feedbacks, ArrayList<User> users){
+    public void memberView(String username, Scanner sc, ArrayList<Feedback> feedbacks, ArrayList<User> users, ArrayList<Schedule> schedules){
+        boolean flag = true;
         do {
             System.out.println("HELLO "+username+" ----------");
             System.out.println("1. Set schedule");
@@ -86,14 +94,16 @@ public class View {
             int choose = Integer.parseInt(sc.nextLine());
             switch (choose){
                 case 1:
-
+                    scheduleModel.setSchedule(username,schedules,sc);
                     break;
                 case 2:
+                    scheduleModel.editScheduleByUser(schedules,username,sc);
                     break;
                 case 3:
+                    scheduleModel.remoteScheduleByUser(schedules,username,sc);
                     break;
                 case 4:
-
+                    scheduleModel.viewScheduleByUser(schedules,username);
                     break;
                 case 5:
                     FeedBackModel feedBackModel = new FeedBackModel();
@@ -103,9 +113,10 @@ public class View {
                     userModel.changePassword(users,sc,username);
                     break;
                 case 0:
-                    homeView(feedbacks,users,sc);
+                    flag = false;
+                    homeView(feedbacks,users, schedules,sc);
             }
-        } while (true);
+        } while (flag);
     }
     public void workerView(){
         System.out.println("---------- MENU ----------");

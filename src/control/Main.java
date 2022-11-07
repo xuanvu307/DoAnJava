@@ -3,6 +3,9 @@ package control;
 import model.*;
 import view.View;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,6 +14,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         ArrayList<Feedback> feedbacks = new ArrayList<>();
         ArrayList<User> users = new ArrayList<>();
+        ArrayList<Schedule> schedules = new ArrayList<>();
         View view = new View();
 
         User admin = new User("admin","admin","admin","123","123");
@@ -22,6 +26,10 @@ public class Main {
         users.add(work);
         users.add(mem1);
 
-        view.homeView(feedbacks,users,sc);
+        ScheduleModel scheduleModel = new ScheduleModel();
+//        scheduleModel.setSchedule("abc",schedules,sc);
+//        scheduleModel.setSchedule("abc",schedules,sc);
+        System.out.println(schedules);
+        view.homeView(feedbacks,users, schedules,sc);
     }
 }
