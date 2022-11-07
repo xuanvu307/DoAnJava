@@ -50,35 +50,37 @@ public class View {
     }
 
 
-    public void adminView(Scanner sc){
-        System.out.println("---------- ADMIN ----------");
-        System.out.println("1. Accept schedule");
-        System.out.println("2. View list schedule");
-        System.out.println("3. View list feedback");
-        System.out.println("4. Update Member");
-        System.out.println("5. ");
-        System.out.println("6. ");
-        System.out.println("7. ");
-        try{
+    public void adminView(ArrayList<User> users, ArrayList<Feedback> feedbacks, ArrayList<Schedule> schedules,Scanner sc){
+        boolean flag = true;
+        while (flag){
+            System.out.println("---------- ADMIN ----------");
+            System.out.println("1. Accept schedule");
+            System.out.println("2. View list schedule");
+            System.out.println("3. View list feedback");
+            System.out.println("4. Update Member");
+            System.out.println("5. ");
+            System.out.println("6. ");
+            System.out.println("0. Log Out");
             int choose = Integer.parseInt(sc.nextLine());
             switch (choose){
                 case 1:
 
                     break;
                 case 2:
+                    System.out.println(schedules);
                     break;
                 case 3:
-
+                    System.out.println(feedbacks);
                     break;
                 case 4:
                     break;
                 case 5:
                     break;
+                case 0:
+                    flag = false;
+                    homeView(feedbacks,users, schedules,sc);
             }
-        } catch (Exception e){
-            System.out.println("enter number");
         }
-
     }
     public void memberView(String username, Scanner sc, ArrayList<Feedback> feedbacks, ArrayList<User> users, ArrayList<Schedule> schedules){
         boolean flag = true;

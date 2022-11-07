@@ -41,7 +41,7 @@ public class UserModel {
                 check =1;
                 View view = new View();
                 if (user.getRole().equals("admin")){
-                    view.adminView(sc);
+                    view.adminView(users,feedbacks,schedules,sc);
                 } else if (user.getRole().equals("worker")){
                     view.workerView();
                 } else {

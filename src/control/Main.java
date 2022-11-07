@@ -27,9 +27,8 @@ public class Main {
         users.add(mem1);
 
         ScheduleModel scheduleModel = new ScheduleModel();
-//        scheduleModel.setSchedule("abc",schedules,sc);
-//        scheduleModel.setSchedule("abc",schedules,sc);
-        System.out.println(schedules);
+
         view.homeView(feedbacks,users, schedules,sc);
+        System.out.println(feedbacks);
     }
 }

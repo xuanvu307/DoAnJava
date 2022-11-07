@@ -66,8 +66,6 @@ public class User {
 
 
 
-    //chỉ xem id, userName, name
-
     @Override
     public String toString() {
         return "User{" +

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class FeedBackModel {
     public void newFeedBack(List<Feedback> feedbacks, Scanner sc, String username){
-        System.out.println("bla");
+        System.out.println("enter feedback: ");
         String feedBack = sc.nextLine();
         Feedback feedback = new Feedback();
         feedback.setTimeFeedback(LocalDateTime.now());

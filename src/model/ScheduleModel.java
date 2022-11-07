@@ -131,16 +131,16 @@ public class ScheduleModel {
         int id = Integer.parseInt(sc.nextLine());
         for (Schedule schedule: schedules){
             if (schedule.getIdSchedule() == id){
-                System.out.println("1. chấp nhận đơn");
-                System.out.println("2. từ chối đơn");
-                System.out.println("3. set cắt hoàn thành");
+                System.out.println("1. confirm");
+                System.out.println("2. decline");
+                System.out.println("3. complete");
                 int choose = Integer.parseInt(sc.nextLine());
                 if (choose == 1){
-                    schedule.setStatus("");
+                    schedule.setStatus("confirm");
                 } else if (choose == 2){
-                    schedule.setStatus("");
+                    schedule.setStatus("decline");
                 } else {
-                    schedule.setStatus("");
+                    schedule.setStatus("complete");
                 }
             }
         }

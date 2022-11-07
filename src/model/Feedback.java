@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Feedback{
     private LocalDateTime timeFeedback;
@@ -37,7 +38,7 @@ public class Feedback{
         return "Feedback{" +
                 ", feedback='" + feedback + '\'' +
                 ", userName='" + userName + '\'' +
-                "timeFeedback=" + timeFeedback +
+                "timeFeedback=" + timeFeedback.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) +
                 '}';
     }
 }
