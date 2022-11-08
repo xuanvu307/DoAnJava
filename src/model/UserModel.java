@@ -43,7 +43,7 @@ public class UserModel {
                 if (user.getRole().equals("admin")){
                     view.adminView(users,feedbacks,schedules,sc);
                 } else if (user.getRole().equals("worker")){
-                    view.workerView();
+                    view.workerView(user.getUsername(),sc,feedbacks,users,schedules);
                 } else {
                     view.memberView(user.getUsername(),sc,feedbacks,users, schedules);
                 }

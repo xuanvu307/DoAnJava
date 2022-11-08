@@ -146,5 +146,15 @@ public class ScheduleModel {
         }
     }
 
+    public int checkPending(ArrayList<Schedule> schedules){
+        int sum = 0;
+        for (Schedule s: schedules
+             ) {
+            if (s.getStatus().equals("pending")){
+                sum++;
+            }
+        }
+        return sum;
+    }
 
 }
