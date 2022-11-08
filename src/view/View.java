@@ -60,14 +60,14 @@ public class View {
             System.out.println("3. View list feedback");
             System.out.println("4. View list user");
             System.out.println("5. Update Member");
-            System.out.println("5. ");
+            System.out.println("6. Remote schedule");
             System.out.println("6. ");
             System.out.println("0. Log Out");
             int choose = Integer.parseInt(sc.nextLine());
             switch (choose){
                 case 1:
                     ScheduleModel scheduleModel = new ScheduleModel();
-                    System.out.println(scheduleModel.checkPending(schedules)+ " unprocessed orders");
+                    System.out.println("Unprocessed orders: " +scheduleModel.checkPending(schedules));
                     scheduleModel.setStatusSchedule(schedules,sc);
                     break;
                 case 2:
@@ -78,10 +78,13 @@ public class View {
                     System.out.println(feedbacks);
                     break;
                 case 4:
+                    System.out.println(users);
+                    break;
+                case 5:
                     AdminModel adminModel = new AdminModel();
                     adminModel.setMember(users,sc);
                     break;
-                case 5:
+                case 6:
                     break;
                 case 0:
                     flag = false;
@@ -106,13 +109,13 @@ public class View {
                     scheduleModel.setSchedule(username,schedules,sc);
                     break;
                 case 2:
-                    scheduleModel.editScheduleByUser(schedules,username,sc);
+                    scheduleModel.editScheduleByMember(schedules,username,sc);
                     break;
                 case 3:
                     scheduleModel.remoteScheduleByUser(schedules,username,sc);
                     break;
                 case 4:
-                    scheduleModel.viewScheduleByUser(schedules,username);
+                    scheduleModel.viewScheduleByMember(schedules,username);
                     break;
                 case 5:
                     FeedBackModel feedBackModel = new FeedBackModel();
@@ -148,13 +151,13 @@ public class View {
                     scheduleModel.setSchedule(username,schedules,sc);
                     break;
                 case 2:
-                    scheduleModel.editScheduleByUser(schedules,username,sc);
+                    scheduleModel.editScheduleByMember(schedules,username,sc);
                     break;
                 case 3:
                     scheduleModel.remoteScheduleByUser(schedules,username,sc);
                     break;
                 case 4:
-                    scheduleModel.viewScheduleByUser(schedules,username);
+                    scheduleModel.viewScheduleByMember(schedules,username);
                     break;
                 case 5:
                     FeedBackModel feedBackModel = new FeedBackModel();

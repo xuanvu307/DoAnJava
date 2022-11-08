@@ -38,6 +38,7 @@ public class ScheduleModel {
 
     // check thời gina ngày và giờ
     public String checkDateTime(LocalDate date, LocalTime time){
+        //Kiểm tra ngày đặt với ngày hiện tại
         if (LocalDate.now().compareTo(date) > 0){
             System.out.println("booking date has passed");
         } else {
@@ -79,7 +80,7 @@ public class ScheduleModel {
 
 
     //Sửa lịch
-    public void editScheduleByUser(ArrayList<Schedule> schedules, String username, Scanner sc){
+    public void editScheduleByMember(ArrayList<Schedule> schedules, String username, Scanner sc){
         for (Schedule schedule: schedules) {
             if (schedule.getUserName().equals(username)){
                 System.out.println(schedule);
@@ -94,8 +95,8 @@ public class ScheduleModel {
         }
     }
 
-    // user xem lại toàn bộ lịch sử đặt lịch
-    public void viewScheduleByUser(ArrayList<Schedule> schedules, String username){
+    // user xem lại toàn bộ lịch sử đặt lịch của user
+    public void viewScheduleByMember(ArrayList<Schedule> schedules, String username){
         int check = 0;
         for (Schedule schedule: schedules) {
             if (schedule.getUserName().equals(username)){
@@ -125,6 +126,12 @@ public class ScheduleModel {
         }
     }
 
+    /*
+    set trạng thái của đơn
+    - đơn mới tạo ra mặc định là pending. người dùng có thế tương tác với đơn ở trạng thái này
+    - đơn sẽ được admin confirm hoặc decline. sau khi duyệt chỉ admin có quyền tương tác
+    - trạng thái 3 sau khi hoàn thiện đơn
+     */
     public void setStatusSchedule(ArrayList<Schedule> schedules, Scanner sc){
         System.out.println(schedules);
         System.out.println("input id set status");
