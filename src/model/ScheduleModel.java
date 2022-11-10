@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ScheduleModel {
@@ -136,27 +137,38 @@ public class ScheduleModel {
     set trạng thái của đơn
     - đơn mới tạo ra mặc định là pending. người dùng có thế tương tác với đơn ở trạng thái này
     - đơn sẽ được admin confirm hoặc decline. sau khi duyệt chỉ admin có quyền tương tác
+    - đơn đã hoàn thiện không thể sét
     - trạng thái 3 sau khi hoàn thiện đơn
+     + khi sét hoàn thiện đơn sẽ tự động cộng lại điểm
+
      */
-    public void setStatusSchedule(ArrayList<User> users, ArrayList<Schedule> schedules, Scanner sc){
-        System.out.println(schedules);
+
+    public void setStatusSchedule(ArrayList<User> users, ArrayList<Schedule> schedules, ArrayList<Feedback> feedbacks, Scanner sc){
+        for (Schedule schedule: schedules){
+            if (schedule.getStatus().equals("pending") || schedule.getStatus().equals("confirm")){
+                System.out.println(schedule);
+            }
+        }
         System.out.println("input id set status");
         int id = Integer.parseInt(sc.nextLine());
         for (Schedule schedule: schedules){
-            if (schedule.getIdSchedule() == id){
+            if (schedule.getIdSchedule() == id && schedule.getStatus().equals("pending")) {
                 System.out.println("1. confirm");
                 System.out.println("2. decline");
-                System.out.println("3. complete");
                 int choose = Integer.parseInt(sc.nextLine());
                 if (choose == 1){
                     schedule.setStatus("confirm");
-                } else if (choose == 2){
+                } else if (choose == 2) {
                     schedule.setStatus("decline");
-                } else if (choose == 3) {
-                    schedule.setStatus("complete");
-                    MemberModel memberModel = new MemberModel();
-                    memberModel.abc(users, schedules);
+                } else {
+                    System.out.println("number fail");
                 }
+            } else if (schedule.getIdSchedule() == id && schedule.getStatus().equals("confirm")){
+                System.out.println("choose any key to complete");
+                sc.nextLine();
+                schedule.setStatus("complete");
+                MemberModel memberModel = new MemberModel();
+                memberModel.autoUpRank(users,schedules,feedbacks);
             }
         }
     }
@@ -173,14 +185,4 @@ public class ScheduleModel {
         return sum;
     }
 
-    // Đếm số đơn đã hoàn thành
-    public int totalComplete(ArrayList<Schedule> schedules){
-        int totalScheduleComplete = 0;
-        for (Schedule schedule: schedules) {
-            if (schedule.getStatus().equals("complete")){
-                totalScheduleComplete++;
-            }
-        }
-        return totalScheduleComplete;
-    }
 }

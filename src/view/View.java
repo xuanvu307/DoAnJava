@@ -25,7 +25,6 @@ public class View {
                         break;
                     case 2:
                         userModel.registerUser(users, sc);
-                        homeView(feedbacks,users,schedules,sc);
                         break;
                     case 0:
                         System.out.println("Exit");
@@ -72,7 +71,7 @@ public class View {
                 case 1:
                     ScheduleModel scheduleModel = new ScheduleModel();
                     System.out.println("Unprocessed orders: " +scheduleModel.checkPending(schedules));
-                    scheduleModel.setStatusSchedule(users, schedules,sc);
+                    scheduleModel.setStatusSchedule(users, schedules, feedbacks, sc);
                     break;
                 case 2:
                     System.out.println("total schedules: "+schedules.size());
@@ -92,7 +91,7 @@ public class View {
                     break;
                 case 0:
                     flag = false;
-                    homeView(feedbacks,users, schedules,sc);
+                    break;
             }
         }
     }
@@ -132,7 +131,7 @@ public class View {
                     break;
                 case 0:
                     flag = false;
-                    homeView(feedbacks,users, schedules,sc);
+                    break;
             }
         } while (flag);
     }
@@ -175,11 +174,11 @@ public class View {
                 case 7:
                     ScheduleModel scheduleModel = new ScheduleModel();
                     System.out.println("Unprocessed orders: " +scheduleModel.checkPending(schedules));
-                    scheduleModel.setStatusSchedule(users, schedules, sc);
+                    scheduleModel.setStatusSchedule(users, schedules, feedbacks, sc);
                     break;
                 case 0:
                     flag = false;
-                    homeView(feedbacks,users, schedules,sc);
+                    break;
             }
         } while (flag);
     }

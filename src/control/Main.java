@@ -15,7 +15,7 @@ public class Main {
         View view = new View();;
 
         User admin = new User("admin","admin","admin","123","123");
-        User mem = new User("member","admin","mem","123","555");
+        User mem = new Member("member","admin","mem","123","555");
         User work = new User("worker","admin","worker","123", "23");
         users.add(admin);
         users.add(mem);
@@ -24,6 +24,7 @@ public class Main {
         System.out.println(users);
 
         view.homeView(feedbacks,users, schedules,sc);
+        System.out.println(users);
 
     }
 }

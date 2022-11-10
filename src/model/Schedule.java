@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 public class Schedule {
     private static int id;
     private int idSchedule;
+    // đây là username của user à a
+    //vâng
     private String userName;
     private LocalDateTime time;
     private String status = "pending";
