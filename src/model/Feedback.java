@@ -38,6 +38,6 @@ public class Feedback{
                 ", feedback='" + feedback + '\'' +
                 ", userName='" + userName + '\'' +
                 "timeFeedback=" + timeFeedback.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) +
-                '}';
+                "\n";
     }
 }

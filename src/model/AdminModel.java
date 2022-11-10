@@ -9,7 +9,7 @@ public class AdminModel {
     // 1 tài khoản có thể là member, worker hoặc là admin
     // cần nhập ID chính xác hoặc username, sau khi tìm hết list sẽ in ra cho người dùng 1 list user
     // chọn đúng ID để sét luồng
-    public void setMember(ArrayList<User> users, Scanner sc){
+    public void setMemberByAdmin(ArrayList<User> users, Scanner sc){
         System.out.println("enter id or username: ");
         String idOrName = sc.nextLine();
         int checkId = 0;

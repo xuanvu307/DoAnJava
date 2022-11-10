@@ -9,7 +9,13 @@ public class User {
     private String password;
     private String phoneNumber;
 
-    public User() {
+
+    public User(String role, String name, String username, String password, String phoneNumber) {
+        this.role = role;
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
         this.idUser = "ID"+id++;
     }
 
@@ -21,14 +27,7 @@ public class User {
         this.idUser = "ID"+id++;
     }
 
-    public User(String role, String name, String username, String password, String phoneNumber) {
-        this.role = role;
-        this.name = name;
-        this.username = username;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.idUser = "ID"+id++;
-    }
+
 
     public String getIdUser() {
         return idUser;

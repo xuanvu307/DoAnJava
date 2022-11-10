@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ScheduleModel {
@@ -150,26 +149,30 @@ public class ScheduleModel {
             }
         }
         System.out.println("input id set status");
-        int id = Integer.parseInt(sc.nextLine());
-        for (Schedule schedule: schedules){
-            if (schedule.getIdSchedule() == id && schedule.getStatus().equals("pending")) {
-                System.out.println("1. confirm");
-                System.out.println("2. decline");
-                int choose = Integer.parseInt(sc.nextLine());
-                if (choose == 1){
-                    schedule.setStatus("confirm");
-                } else if (choose == 2) {
-                    schedule.setStatus("decline");
-                } else {
-                    System.out.println("number fail");
+        try {
+            int id = Integer.parseInt(sc.nextLine());
+            for (Schedule schedule: schedules){
+                if (schedule.getIdSchedule() == id && schedule.getStatus().equals("pending")) {
+                    System.out.println("1. confirm");
+                    System.out.println("2. decline");
+                    int choose = Integer.parseInt(sc.nextLine());
+                    if (choose == 1){
+                        schedule.setStatus("confirm");
+                    } else if (choose == 2) {
+                        schedule.setStatus("decline");
+                    } else {
+                        System.out.println("number fail");
+                    }
+                } else if (schedule.getIdSchedule() == id && schedule.getStatus().equals("confirm")){
+                    System.out.println("choose any key to complete");
+                    sc.nextLine();
+                    schedule.setStatus("complete");
+                    MemberModel memberModel = new MemberModel();
+                    memberModel.autoUpRank(users,schedules,feedbacks);
                 }
-            } else if (schedule.getIdSchedule() == id && schedule.getStatus().equals("confirm")){
-                System.out.println("choose any key to complete");
-                sc.nextLine();
-                schedule.setStatus("complete");
-                MemberModel memberModel = new MemberModel();
-                memberModel.autoUpRank(users,schedules,feedbacks);
             }
+        } catch (Exception e){
+            System.out.println("enter number");
         }
     }
 

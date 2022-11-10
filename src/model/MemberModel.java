@@ -2,19 +2,17 @@ package model;
 
 
 import java.util.ArrayList;
-
 public class MemberModel {
 
 
+    // tự động tăng hạng cho thành viên dựa trên điểm số
     public void autoUpRank(ArrayList<User> users, ArrayList<Schedule> schedules, ArrayList<Feedback> feedbacks){
         for (User user: users) {
-            for (Schedule schedule: schedules){
-                if (user.getUsername().equals(schedule.getUserName()) && user.getRole().equals("member")){
-                    double score = score(user.getUsername(),schedules,feedbacks);
-                    Member member = (Member) user;
-                    member.setScore(score);
-                    member.setRanking(ranking(score));
-                }
+            if (user.getRole().equals("member")){
+                double score = score(user.getUsername(),schedules,feedbacks);
+                Member member = (Member) user;
+                member.setScore(score);
+                member.setRanking(ranking(score));
             }
         }
     }
@@ -33,7 +31,7 @@ public class MemberModel {
         }
         int check = 0;
         for (Feedback feedback: feedbacks){
-            if (feedback.getUserName().equals(username) && check < 6){
+            if (feedback.getUserName().equals(username) && check < 5){
                 score += 0.5;
                 check++;
             }
@@ -41,15 +39,19 @@ public class MemberModel {
         return score;
     }
 
+
+    // hạng thành viên đạt được
+
     public String ranking(double score){
-        if ( score < 1.5){
+        if ( score <= 1.5){
             return "Bronze";
-        } else if (score < 3.0) {
+        } else if (score <= 3.0) {
             return "Silver";
-        } else if (score < 7.0){
+        } else if (score <= 7.0){
             return "Gold";
         } else {
             return "Platinum";
         }
     }
+
 }

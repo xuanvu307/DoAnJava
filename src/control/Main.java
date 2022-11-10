@@ -11,20 +11,11 @@ public class Main {
         ArrayList<Feedback> feedbacks = new ArrayList<>();
         ArrayList<User> users = new ArrayList<>();
         ArrayList<Schedule> schedules = new ArrayList<>();
-        ArrayList<Voucher> vouchers = new ArrayList<>();
         View view = new View();;
-
-        User admin = new User("admin","admin","admin","123","123");
-        User mem = new Member("member","admin","mem","123","555");
-        User work = new User("worker","admin","worker","123", "23");
+        User admin = new Admin("admin","admin","admin","123");
         users.add(admin);
-        users.add(mem);
-        users.add(work);
-
-        System.out.println(users);
 
         view.homeView(feedbacks,users, schedules,sc);
-        System.out.println(users);
 
     }
 }

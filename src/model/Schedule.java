@@ -6,21 +6,19 @@ import java.time.format.DateTimeFormatter;
 public class Schedule {
     private static int id;
     private int idSchedule;
-    // đây là username của user à a
-    //vâng
-    private String userName;
+    private String username;
     private LocalDateTime time;
     private String status = "pending";
 
 
-    public Schedule(String userName, LocalDateTime time) {
-        this.userName = userName;
+    public Schedule(String username, LocalDateTime time) {
+        this.username = username;
         this.time = time;
         this.idSchedule = id++;
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public int getIdSchedule() {
@@ -37,9 +35,9 @@ public class Schedule {
 
     @Override
     public String toString() {
-        return "Schedule{" +
-                "idSchedule=" + idSchedule +
-                ", userName='" + userName + '\'' +
+        return "Schedule:" +
+                "idSchedule : " + idSchedule +
+                ", userName='" + username + '\'' +
                 ", time: " + time.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) +
                 ", status='" + status + '\'' +
                 "\n";

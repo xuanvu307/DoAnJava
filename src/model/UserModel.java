@@ -24,8 +24,8 @@ public class UserModel {
 
         if (!checkUserName(username,users)){
             System.out.println("register OK");
-            User user = new User(name,username,password,phone);
-            users.add(new Member(user));
+            User user = new Member(name,username,password,phone);
+            users.add(user);
         }
     }
 
