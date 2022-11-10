@@ -11,7 +11,8 @@ public class Main {
         ArrayList<Feedback> feedbacks = new ArrayList<>();
         ArrayList<User> users = new ArrayList<>();
         ArrayList<Schedule> schedules = new ArrayList<>();
-        View view = new View();
+        ArrayList<Voucher> vouchers = new ArrayList<>();
+        View view = new View();;
 
         User admin = new User("admin","admin","admin","123","123");
         User mem = new User("member","admin","mem","123","555");
@@ -19,6 +20,8 @@ public class Main {
         users.add(admin);
         users.add(mem);
         users.add(work);
+
+        System.out.println(users);
 
         view.homeView(feedbacks,users, schedules,sc);
 

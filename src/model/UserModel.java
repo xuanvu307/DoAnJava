@@ -25,10 +25,15 @@ public class UserModel {
         if (!checkUserName(username,users)){
             System.out.println("register OK");
             User user = new User(name,username,password,phone);
-            users.add(user);
+            users.add(new Member(user));
         }
     }
 
+    /*
+    Đăng nhập
+    nếu đăng nhập đúng sẽ được vào trang tiếp theo thao luồng
+    nếu đăng nhập sai sẽ đến được đăng nhập lại hoặc lấy mật khẩu theo số điện thoại
+     */
     public void login(ArrayList<Feedback> feedbacks, ArrayList<User> users, ArrayList<Schedule> schedules, Scanner sc){
         System.out.println("Username: ");
         String username = sc.nextLine();
@@ -76,6 +81,7 @@ public class UserModel {
     }
 
     // đổi password
+    // mật khẩu cần đúng định dạng regex
     public void changePassword(ArrayList<User> users,Scanner sc, String username){
         for (User user: users) {
             if (user.getUsername().equals(username)){

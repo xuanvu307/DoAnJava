@@ -10,27 +10,31 @@ public class View {
     ScheduleModel scheduleModel = new ScheduleModel();
 
     public  void homeView(ArrayList<Feedback> feedbacks, ArrayList<User> users, ArrayList<Schedule> schedules, Scanner sc){
-        System.out.println("---------- MENU ----------");
-        System.out.println("1. Login");
-        System.out.println("2. Register");
-        System.out.println("0. Exit");
-        System.out.println("Choose number, please: ");
-        try{
-            int choose = Integer.parseInt(sc.nextLine());
-            switch (choose) {
-                case 1:
-                    userModel.login(feedbacks, users, schedules, sc);
-                    break;
-                case 2:
-                    userModel.registerUser(users, sc);
-                    homeView(feedbacks,users,schedules,sc);
-                    break;
-                case 0:
-                    System.out.println("Exit");
-                    break;
+        boolean flag =true;
+        while (flag){
+            System.out.println("---------- MENU ----------");
+            System.out.println("1. Login");
+            System.out.println("2. Register");
+            System.out.println("0. Exit");
+            System.out.println("Choose number, please: ");
+            try{
+                int choose = Integer.parseInt(sc.nextLine());
+                switch (choose) {
+                    case 1:
+                        userModel.login(feedbacks, users, schedules, sc);
+                        break;
+                    case 2:
+                        userModel.registerUser(users, sc);
+                        homeView(feedbacks,users,schedules,sc);
+                        break;
+                    case 0:
+                        System.out.println("Exit");
+                        flag = false;
+                        break;
+                }
+            } catch (Exception e){
+                System.out.println("enter number");
             }
-        } catch (Exception e){
-            System.out.println("enter number");
         }
     }
 
@@ -68,7 +72,7 @@ public class View {
                 case 1:
                     ScheduleModel scheduleModel = new ScheduleModel();
                     System.out.println("Unprocessed orders: " +scheduleModel.checkPending(schedules));
-                    scheduleModel.setStatusSchedule(schedules,sc);
+                    scheduleModel.setStatusSchedule(users, schedules,sc);
                     break;
                 case 2:
                     System.out.println("total schedules: "+schedules.size());
@@ -92,6 +96,8 @@ public class View {
             }
         }
     }
+
+    // các tính năng mà member sử dụng được
     public void memberView(String username, Scanner sc, ArrayList<Feedback> feedbacks, ArrayList<User> users, ArrayList<Schedule> schedules){
         boolean flag = true;
         do {
@@ -168,7 +174,8 @@ public class View {
                     break;
                 case 7:
                     ScheduleModel scheduleModel = new ScheduleModel();
-                    scheduleModel.setStatusSchedule(schedules,sc);
+                    System.out.println("Unprocessed orders: " +scheduleModel.checkPending(schedules));
+                    scheduleModel.setStatusSchedule(users, schedules, sc);
                     break;
                 case 0:
                     flag = false;
