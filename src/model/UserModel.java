@@ -97,7 +97,7 @@ public class UserModel {
         System.out.println("input id or username");
         String input = sc.nextLine();
         for (User user: users) {
-            if (user.getUsername().equals(input)){
+            if (user.getUsername().equals(input) || user.getIdUser().equals(input)){
                 System.out.println("new password");
                 String newPassword = regex.checkPassword(sc);
                 user.setPassword(newPassword);
