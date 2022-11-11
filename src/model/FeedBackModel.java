@@ -21,7 +21,7 @@ public class FeedBackModel {
 
             // in ra tất cả các lần thành công
             for (Schedule schedule: schedules) {
-                if (schedule.getUserName().equals(username) && schedule.getStatus().equals("complete")) System.out.println(schedule);
+                if (schedule.getUsername().equals(username) && schedule.getStatus().equals("complete")) System.out.println(schedule);
             }
             // chọn id lần thành công và tiến hành feedback
             System.out.println("ID schedule");
@@ -29,7 +29,7 @@ public class FeedBackModel {
                 int id = Integer.parseInt(sc.nextLine());
                 int checkID = 0;
                 for (Schedule schedule: schedules) {
-                    if (schedule.getIdSchedule() == id && schedule.getUserName().equals(username) && schedule.getStatus().equals("complete")){
+                    if (schedule.getIdSchedule() == id && schedule.getUsername().equals(username) && schedule.getStatus().equals("complete")){
                         System.out.println("enter feedback: ");
                         String feedBack = sc.nextLine();
                         Feedback feedback = new Feedback();
@@ -64,7 +64,7 @@ public class FeedBackModel {
                     }
                 }
                 for (Schedule schedule: schedules){
-                    if (schedule.getUserName().equals(username) && schedule.getStatus().equals("complete")){
+                    if (schedule.getUsername().equals(username) && schedule.getStatus().equals("complete")){
                         totalScheduleComplete++;
                     }
                 }

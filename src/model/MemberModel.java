@@ -25,7 +25,7 @@ public class MemberModel {
     public double score(String username, ArrayList<Schedule> schedules, ArrayList<Feedback> feedbacks){
         double score = 0;
         for (Schedule schedule: schedules){
-            if (schedule.getUserName().equals(username) && schedule.getStatus().equals("complete")){
+            if (schedule.getUsername().equals(username) && schedule.getStatus().equals("complete")){
                score++;
             }
         }
@@ -56,6 +56,7 @@ public class MemberModel {
         }
     }
 
+    // xem 3 người xếp hạng cao nhất và thứ hạng của bản thân
     public void top(ArrayList<User> users, String username){
         List<Member> members = new ArrayList<>();
         if (!users.isEmpty()){
@@ -63,8 +64,8 @@ public class MemberModel {
                 if(u.getRole().equals("member")) members.add((Member) u);
             }
            members.sort((o1, o2) -> o1.getScore() < o2.getScore() ? 1 : -1);
-            for (int i = 0; i < members.size(); i++) {
-                System.out.println("TOP "+ (i+1)+" "+ members.get(i).getUsername()+ "rank = "  + members.get(i).getRanking());
+            for (int i = 0; i < 3; i++) {
+                System.out.println("TOP "+ (i+1)+" "+ members.get(i).getUsername()+ "\trank = "  + members.get(i).getRanking());
             }
             for (int i = 0; i < members.size(); i++) {
                 if (members.get(i).getUsername().equals(username)){

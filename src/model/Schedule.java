@@ -17,9 +17,6 @@ public class Schedule {
         this.idSchedule = id++;
     }
 
-    public String getUserName() {
-        return username;
-    }
 
     public int getIdSchedule() {
         return idSchedule;
@@ -27,6 +24,22 @@ public class Schedule {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 
     public String getStatus() {

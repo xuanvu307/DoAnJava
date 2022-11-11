@@ -38,6 +38,9 @@ public class View {
         }
     }
 
+
+    // đăng nhập lỗi
+    // đăng nhập lại hoặc lấy lại mật khẩu
     public void loginFail(ArrayList<Feedback> feedbacks,ArrayList<User> users, ArrayList<Schedule> schedules, Scanner sc){
         System.out.println("---------- MENU ----------");
         System.out.println("1. Login");
@@ -55,40 +58,60 @@ public class View {
     }
 
 
+    /*
+     * hiển thị của admin và các chức năng của admin
+     * 1. duyệt đơn và sét trạng thái cho đơn
+     * 2. xóa đơn
+     * 3. phân quyền cho user
+     * 4. xem toàn bộ danh sách lịch
+     * 5. xem danh sách feedback
+     * 6. xem danh sách user
+     * 7. xem xếp hạng thành viên
+     * 8. đổi password
+     * 0. thoát về màn hình đăng nhập
+     */
+
     public void adminView(ArrayList<User> users, ArrayList<Feedback> feedbacks, ArrayList<Schedule> schedules,Scanner sc){
         boolean flag = true;
         while (flag){
             System.out.println("---------- ADMIN ----------");
             System.out.println("1. Set status schedule");
-            System.out.println("2. View list schedule");
-            System.out.println("3. View list feedback");
-            System.out.println("4. View list user");
-            System.out.println("5. Update Member");
-            System.out.println("6. Remote schedule");
+            System.out.println("2. Remote schedule");
+            System.out.println("3. Update Member");
+            System.out.println("4. View list schedule");
+            System.out.println("5. View list feedback");
+            System.out.println("6. View list user");
+            System.out.println("7. View Top");
+            System.out.println("8. Change Password");
             System.out.println("0. Log Out");
             try {
                 int choose = Integer.parseInt(sc.nextLine());
                 switch (choose) {
                     case 1:
-                        System.out.println("Unprocessed orders: " + scheduleModel.checkPending(schedules));
                         scheduleModel.setStatusSchedule(users, schedules, feedbacks, sc);
                         break;
                     case 2:
-                        System.out.println("total schedules: " + schedules.size());
-                        System.out.println(schedules);
+                        scheduleModel.remoteScheduleByAdmin(schedules,sc);
                         break;
                     case 3:
-                        System.out.println(feedbacks);
-                        break;
-                    case 4:
-                        System.out.println(users);
-                        break;
-                    case 5:
                         AdminModel adminModel = new AdminModel();
                         adminModel.setMemberByAdmin(users, sc);
                         break;
+                    case 4:
+                        System.out.println("total schedules: " + schedules.size());
+                        System.out.println(schedules);
+                        break;
+                    case 5:
+                        System.out.println(feedbacks);
+                        break;
                     case 6:
-                        scheduleModel.remoteScheduleByAdmin(schedules,sc);
+                        System.out.println(users);
+                        break;
+                    case 7:
+                        memberModel.top(users, "admin");
+                        break;
+                    case 8:
+                        userModel.changePasswordByAdmin(users,sc);
                         break;
                     case 0:
                         flag = false;
@@ -100,7 +123,17 @@ public class View {
         }
     }
 
-    // các tính năng mà member sử dụng được
+    /*
+     * hiển thị và các tính năng của member
+     * 1. tạo đơn đặt hàng mới
+     * 2. update đơn đặt hàng
+     * 3. xóa đơn đặt hàng
+     * 4. xem toàn bộ đơn đặt hàng
+     * 5. feedback
+     * 6. xem bảng xếp hạng và xếp hạng bản thân
+     * 7. đổi mật khẩu
+     * 0. thoát về màn hình đăng nhập
+     */
     public void memberView(String username, Scanner sc, ArrayList<Feedback> feedbacks, ArrayList<User> users, ArrayList<Schedule> schedules){
         boolean flag = true;
         do {
@@ -148,6 +181,7 @@ public class View {
         } while (flag);
     }
 
+
     // có đầy đủ tính năng của member
     // thêm tính năng sửa trạng thái của lịch
     public void workerView(String username, Scanner sc, ArrayList<Feedback> feedbacks, ArrayList<User> users, ArrayList<Schedule> schedules){
@@ -159,10 +193,11 @@ public class View {
             System.out.println("3. Remote schedule ");
             System.out.println("4. View schedule");
             System.out.println("5. Feedback");
-            System.out.println("6. Change Password");
-            System.out.println("7. Chang status schedule");
+            System.out.println("6. View Top");
+            System.out.println("7. Change Password");
+            System.out.println("8. Set Status Schedule");
             System.out.println("0. Log out");
-            try{
+            try {
                 int choose = Integer.parseInt(sc.nextLine());
                 switch (choose){
                     case 1:
@@ -179,21 +214,22 @@ public class View {
                         break;
                     case 5:
                         FeedBackModel feedBackModel = new FeedBackModel();
-                        feedBackModel.newFeedBack(users, schedules, feedbacks,sc, username);
+                        feedBackModel.newFeedBack(users,schedules,feedbacks,sc, username);
                         break;
                     case 6:
-                        userModel.changePassword(users,sc,username);
+                        memberModel.top(users,username);
                         break;
                     case 7:
-                        ScheduleModel scheduleModel = new ScheduleModel();
-                        System.out.println("Unprocessed orders: " +scheduleModel.checkPending(schedules));
+                        userModel.changePassword(users,sc,username);
+                        break;
+                    case 8:
                         scheduleModel.setStatusSchedule(users, schedules, feedbacks, sc);
                         break;
                     case 0:
                         flag = false;
                         break;
                 }
-            }catch (Exception e){
+            } catch (Exception e){
                 System.out.println("input number");
             }
         } while (flag);

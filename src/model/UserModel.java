@@ -92,6 +92,19 @@ public class UserModel {
         }
     }
 
+    // admin đổi password
+    public void changePasswordByAdmin(ArrayList<User> users,Scanner sc){
+        System.out.println("input id or username");
+        String input = sc.nextLine();
+        for (User user: users) {
+            if (user.getUsername().equals(input)){
+                System.out.println("new password");
+                String newPassword = regex.checkPassword(sc);
+                user.setPassword(newPassword);
+                System.out.println("set new password success");
+            }
+        }
+    }
 
     // duyệt hết các phần tử trong mảng xem đã username được sử dụng chưa
     public boolean checkUserName(String username, ArrayList<User> users){
