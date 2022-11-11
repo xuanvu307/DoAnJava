@@ -73,6 +73,9 @@ public class VoucherModel {
         }
     }
 
+    //Hàm này hình như sai a ạ, dòng 83 nếu xóa ở vị trí số 1 đi rồi thì get ra nó là voucher có vị trí số 2 lúc trước. 
+    //Nếu list voucher ko có đủ số vcher thì sẽ bị OutOfBound exception
+    //Có thể get(i).getvoucher lưu vào 1 biến String rồi mới remove(i) => return biến đó
     public String getVoucherByMem(ArrayList<Voucher> vouchers){
         Random random = new Random();
         if (vouchers.size() != 0){
