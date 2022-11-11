@@ -1,9 +1,9 @@
 package model;
 
-
 import java.util.ArrayList;
-public class MemberModel {
+import java.util.List;
 
+public class MemberModel {
 
     // tự động tăng hạng cho thành viên dựa trên điểm số
     public void autoUpRank(ArrayList<User> users, ArrayList<Schedule> schedules, ArrayList<Feedback> feedbacks){
@@ -29,9 +29,9 @@ public class MemberModel {
                score++;
             }
         }
-        int check = 0;
+        int check = 1;
         for (Feedback feedback: feedbacks){
-            if (feedback.getUserName().equals(username) && check < 5){
+            if (feedback.getUserName().equals(username) && check <= 5){
                 score += 0.5;
                 check++;
             }
@@ -43,15 +43,34 @@ public class MemberModel {
     // hạng thành viên đạt được
 
     public String ranking(double score){
-        if ( score <= 1.5){
+        if ( score <= 2.0 && score > 1){
             return "Bronze";
-        } else if (score <= 3.0) {
+        } else if (score <= 6.0 && score >2) {
             return "Silver";
-        } else if (score <= 7.0){
+        } else if (score <= 15.0 && score >6){
             return "Gold";
-        } else {
+        } else if (score > 15){
             return "Platinum";
+        } else {
+            return "NoRank";
         }
     }
 
+    public void top(ArrayList<User> users, String username){
+        List<Member> members = new ArrayList<>();
+        if (!users.isEmpty()){
+            for (User u : users){
+                if(u.getRole().equals("member")) members.add((Member) u);
+            }
+           members.sort((o1, o2) -> o1.getScore() < o2.getScore() ? 1 : -1);
+            for (int i = 0; i < members.size(); i++) {
+                System.out.println("TOP "+ (i+1)+" "+ members.get(i).getUsername()+ "rank = "  + members.get(i).getRanking());
+            }
+            for (int i = 0; i < members.size(); i++) {
+                if (members.get(i).getUsername().equals(username)){
+                    System.out.println("your rank: " +(i+1));
+                }
+            }
+        }
+    }
 }

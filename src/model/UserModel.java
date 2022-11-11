@@ -2,7 +2,6 @@ package model;
 
 import utils.Regex;
 import view.View;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 

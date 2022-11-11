@@ -124,11 +124,40 @@ public class ScheduleModel {
             }
         }
         System.out.println("Enter id schedule delete");
-        int id = Integer.parseInt(sc.nextLine());
-        for (int i = 0; i < schedules.size(); i++) {
-            if (schedules.get(i).getIdSchedule() == id && schedules.get(i).getStatus().equals("pending")){
-                schedules.remove(i);
+        try {
+            int id = Integer.parseInt(sc.nextLine());
+            for (Schedule schedule : schedules) {
+                if (schedule.getIdSchedule() == id && schedule.getStatus().equals("pending")) {
+                    schedule.setStatus("decline");
+                }
             }
+        } catch (Exception e){
+            System.out.println("enter number");
+        }
+    }
+
+
+    // hủy đơn bởi admin( chỉ hủy đơn ở trạng thái chờ duyệt hoặc chờ hoàn thiện)
+    public void remoteScheduleByAdmin(ArrayList<Schedule> schedules, Scanner sc){
+        for (Schedule schedule: schedules) {
+            if (!schedule.getStatus().equals("complete") || !schedule.getStatus().equals("decline")){
+                System.out.println(schedule);
+            }
+        }
+        System.out.println("Enter id schedule delete");
+        try {
+            int id = Integer.parseInt(sc.nextLine());
+            int check = 0;
+            for (Schedule schedule : schedules) {
+                if (schedule.getIdSchedule() == id && (schedule.getStatus().equals("pending")) || schedule.getStatus().equals("confirm")) {
+                    schedule.setStatus("decline");
+                    System.out.println("OK");
+                    check ++;
+                }
+            }
+            if (check == 0) System.out.println("ID Wrong");
+        } catch (Exception exception){
+            System.out.println("enter number");
         }
     }
 
@@ -164,11 +193,18 @@ public class ScheduleModel {
                         System.out.println("number fail");
                     }
                 } else if (schedule.getIdSchedule() == id && schedule.getStatus().equals("confirm")){
-                    System.out.println("choose any key to complete");
-                    sc.nextLine();
-                    schedule.setStatus("complete");
-                    MemberModel memberModel = new MemberModel();
-                    memberModel.autoUpRank(users,schedules,feedbacks);
+                    System.out.println("1. complete");
+                    System.out.println("2. decline");
+                    int choose = Integer.parseInt(sc.nextLine());
+                    if (choose == 1){
+                        schedule.setStatus("complete");
+                        MemberModel memberModel = new MemberModel();
+                        memberModel.autoUpRank(users,schedules,feedbacks);
+                    } else if (choose == 2) {
+                        schedule.setStatus("decline");
+                    } else {
+                        System.out.println("number fail");
+                    }
                 }
             }
         } catch (Exception e){
