@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class View {
     UserModel userModel = new UserModel();
     ScheduleModel scheduleModel = new ScheduleModel();
+    MemberModel memberModel = new MemberModel();
 
     public  void homeView(ArrayList<Feedback> feedbacks, ArrayList<User> users, ArrayList<Schedule> schedules, Scanner sc){
         boolean flag =true;
@@ -69,7 +70,6 @@ public class View {
                 int choose = Integer.parseInt(sc.nextLine());
                 switch (choose) {
                     case 1:
-                        ScheduleModel scheduleModel = new ScheduleModel();
                         System.out.println("Unprocessed orders: " + scheduleModel.checkPending(schedules));
                         scheduleModel.setStatusSchedule(users, schedules, feedbacks, sc);
                         break;
@@ -88,6 +88,7 @@ public class View {
                         adminModel.setMemberByAdmin(users, sc);
                         break;
                     case 6:
+                        scheduleModel.remoteScheduleByAdmin(schedules,sc);
                         break;
                     case 0:
                         flag = false;
@@ -109,7 +110,8 @@ public class View {
             System.out.println("3. Remote schedule ");
             System.out.println("4. View schedule");
             System.out.println("5. Feedback");
-            System.out.println("6. Change Password");
+            System.out.println("6. View Top");
+            System.out.println("7. Change Password");
             System.out.println("0. Log out");
             try {
                 int choose = Integer.parseInt(sc.nextLine());
@@ -131,6 +133,9 @@ public class View {
                         feedBackModel.newFeedBack(users,schedules,feedbacks,sc, username);
                         break;
                     case 6:
+                        memberModel.top(users,username);
+                        break;
+                    case 7:
                         userModel.changePassword(users,sc,username);
                         break;
                     case 0:

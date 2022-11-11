@@ -12,8 +12,16 @@ public class Main {
         ArrayList<User> users = new ArrayList<>();
         ArrayList<Schedule> schedules = new ArrayList<>();
         View view = new View();;
-        User admin = new Admin("admin","admin","admin","123");
+        User admin = new Admin("admin","admin","123","123");
+        User mem = new Member("admin","mem","123","123");
+        User mem2 = new Member("admin","mem1","123","123");
+        User mem3 = new Member("admin","mem2","123","123");
+        User mem4 = new Member("admin","mem3","123","123");
         users.add(admin);
+        users.add(mem);
+        users.add(mem2);
+        users.add(mem3);
+        users.add(mem4);
 
         view.homeView(feedbacks,users, schedules,sc);
 

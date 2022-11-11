@@ -7,6 +7,7 @@ public class Feedback{
     private LocalDateTime timeFeedback;
     private String feedback;
     private String userName;
+    private int idSchedule;
 
     public LocalDateTime getTimeFeedback() {
         return timeFeedback;
@@ -32,12 +33,21 @@ public class Feedback{
         this.userName = userName;
     }
 
+    public int getIdSchedule() {
+        return idSchedule;
+    }
+
+    public void setIdSchedule(int idSchedule) {
+        this.idSchedule = idSchedule;
+    }
+
     @Override
     public String toString() {
-        return "Feedback{" +
+        return "Feedback:" +
+                "userName='" + userName + '\'' +
+                ", idSchedule=" + idSchedule +
                 ", feedback='" + feedback + '\'' +
-                ", userName='" + userName + '\'' +
-                "timeFeedback=" + timeFeedback.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) +
+                ", timeFeedback=" + timeFeedback.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) +
                 "\n";
     }
 }
