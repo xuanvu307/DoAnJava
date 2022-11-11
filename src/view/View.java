@@ -10,6 +10,8 @@ public class View {
     ScheduleModel scheduleModel = new ScheduleModel();
     MemberModel memberModel = new MemberModel();
 
+
+    // trang đăng nhập đăng ký
     public  void homeView(ArrayList<Feedback> feedbacks, ArrayList<User> users, ArrayList<Schedule> schedules, Scanner sc){
         boolean flag =true;
         while (flag){
