@@ -65,8 +65,10 @@ public class UserModel {
         int check = 0;
         System.out.println("input phoneNUmber ");
         String phone = sc.nextLine();
+        System.out.println("input username: ");
+        String username = sc.nextLine();
         for (User user:users) {
-            if (user.getPhoneNumber().equals(phone)){
+            if (user.getPhoneNumber().equals(phone) && user.getUsername().equals(username)){
                 System.out.println("Please input new pass:");
                 String newPassword = regex.checkPassword(sc);
                 user.setPassword(newPassword);
@@ -93,6 +95,7 @@ public class UserModel {
     }
 
     // admin đổi password
+    // admin đổi được pass của mọi username
     public void changePasswordByAdmin(ArrayList<User> users,Scanner sc){
         System.out.println("input id or username");
         String input = sc.nextLine();
