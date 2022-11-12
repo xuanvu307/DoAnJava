@@ -70,14 +70,14 @@ public class View {
      * 7. xem xếp hạng thành viên
      * 8. đổi password
      * 0. thoát về màn hình đăng nhập
-     */
+     */ 
 
     public void adminView(ArrayList<User> users, ArrayList<Feedback> feedbacks, ArrayList<Schedule> schedules,Scanner sc){
         boolean flag = true;
         while (flag){
             System.out.println("---------- ADMIN ----------");
             System.out.println("1. Set status schedule");
-            System.out.println("2. Remote schedule");
+            System.out.println("2. Remove schedule");
             System.out.println("3. Update Member");
             System.out.println("4. View list schedule");
             System.out.println("5. View list feedback");
@@ -141,7 +141,7 @@ public class View {
             System.out.println("HELLO "+username+" ----------");
             System.out.println("1. Set schedule");
             System.out.println("2. Update schedule");
-            System.out.println("3. Remote schedule ");
+            System.out.println("3. Remove schedule ");
             System.out.println("4. View schedule");
             System.out.println("5. Feedback");
             System.out.println("6. View Top");
@@ -171,7 +171,7 @@ public class View {
                         break;
                     case 7:
                         userModel.changePassword(users,sc,username);
-                        break;
+                        break;                
                     case 0:
                         flag = false;
                         break;
@@ -191,7 +191,7 @@ public class View {
             System.out.println("HELLO "+username+" ----------");
             System.out.println("1. Set schedule");
             System.out.println("2. Update schedule");
-            System.out.println("3. Remote schedule ");
+            System.out.println("3. Remove schedule ");
             System.out.println("4. View schedule");
             System.out.println("5. Feedback");
             System.out.println("6. View Top");

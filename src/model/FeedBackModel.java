@@ -8,7 +8,7 @@ public class FeedBackModel {
     MemberModel memberModel = new MemberModel();
 
     /*
-    * mỗi lần cắt thành công người dùng sẽ được feedbakc 1 lần
+    * mỗi lần cắt thành công người dùng sẽ được feedback 1 lần
     * lần feedback sẽ do người dùng chọn với lần đặt lịch đó
     * feedback thành công sẽ được thêm vào list
     * sau feedback sẽ được tính điểm để tăng hạng. tối đa 5 lần

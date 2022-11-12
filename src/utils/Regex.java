@@ -14,7 +14,7 @@ public class Regex {
      */
     String regexUserName = "^[a-zA-Z0-9]{5,15}$";
     Pattern patternUserName = Pattern.compile(regexUserName);
-    String regexPassword = "^((?=.*[A-Z])(?=.*[.;+*])(?=.*[0-9])(\\S){6,16})$";
+    String regexPassword = "^((?=.*[A-Z])(?=.*[@.;+*])(?=.*[0-9])(\\S){6,16})$";
     Pattern patternPassword = Pattern.compile(regexPassword);
     String regexPhone = "^[0]{1}[1-9]{1}[0-9]{8}$";
     Pattern patternPhone = Pattern.compile(regexPhone);
